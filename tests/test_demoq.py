@@ -21,3 +21,15 @@ def test_registration():
     browser.element('#react-select-4-input').type('Lu').press_enter()
     browser.element('#submit').execute_script('element.click()')
     time.sleep(20.0)
+    browser.element('.table').all('td').even.should(have.texts(
+    'Max Cheshire',
+    'Maxcheshire1@gmail.com',
+    'Male',
+    '7999123121',
+    '26 February,1998',
+    'Maths',
+    'Reading',
+    '123.jpeg',
+    'Pushkina-kolotushkina, Moscow, Russia',
+    'Uttar Pradesh Lucknow'))
+
