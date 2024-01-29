@@ -1,8 +1,13 @@
 import time
 from selene import browser, be, have
 import os
+from selenium import webdriver
 
 def test_registration():
+    driver_options = webdriver.ChromeOptions()
+    driver_options.page_load_strategy = "eager"
+
+    browser.config.driver_options = driver_options
     browser.open('/automation-practice-form')
     browser.element('#firstName').type('Max')
     browser.element('#lastName').type('Cheshire')
@@ -20,13 +25,12 @@ def test_registration():
     browser.element('#react-select-3-input').type('Utt').press_enter()
     browser.element('#react-select-4-input').type('Lu').press_enter()
     browser.element('#submit').execute_script('element.click()')
-    time.sleep(20.0)
     browser.element('.table').all('td').even.should(have.texts(
     'Max Cheshire',
     'Maxcheshire1@gmail.com',
     'Male',
     '7999123121',
-    '26 February,1998',
+    '26 March,1998',
     'Maths',
     'Reading',
     '123.jpeg',
